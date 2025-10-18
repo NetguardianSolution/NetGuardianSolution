@@ -179,9 +179,7 @@ const LandingPage = ({ backgroundImage }) => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
               >
-                Advanced mobile device management, tracking, and unlocking solutions for 
-                <span className="text-cyan-400"> enterprise security teams</span> and 
-                <span className="text-amber-400"> telecom professionals</span>.
+                Advanced mobile device management, tracking, and unlocking solutions.
               </motion.p>
             </motion.div>
 

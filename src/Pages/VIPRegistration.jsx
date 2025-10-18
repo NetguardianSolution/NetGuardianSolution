@@ -361,7 +361,7 @@ const VIPRegistration = () => {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-slate-400">VIP Access:</span>
-                      <span className="text-amber-400">Active</span>
+                      <span className="text-green-400">Active</span>
                     </div>
                   </div>
                 </div>

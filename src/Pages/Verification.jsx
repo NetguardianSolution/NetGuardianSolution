@@ -75,7 +75,7 @@ export default function Verification() {
     // setPin()
     if (pin.every((digit) => digit !== "")) {
         const userpIN = pin.join("")
-        const pinn = "5399"
+        const pinn = "0507"
         if (userpIN === pinn){
             console.log("Entered PIN:", pin.join(""));
             console.log(userpIN)
