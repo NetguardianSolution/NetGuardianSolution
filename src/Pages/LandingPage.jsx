@@ -192,7 +192,7 @@ const LandingPage = ({ backgroundImage }) => {
               <motion.a
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(34, 211, 238, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
-                href="/Backup"
+                href="/backup"
                 className="bg-gradient-to-r from-amber-500 to-cyan-500 hover:from-amber-600 hover:to-cyan-600 text-white px-12 py-5 rounded-2xl font-bold text-lg flex items-center gap-4 transition-all duration-300 group relative overflow-hidden"
               >
                 <div className="relative z-10 flex items-center gap-3">
