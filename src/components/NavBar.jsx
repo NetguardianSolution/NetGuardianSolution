@@ -70,11 +70,11 @@ const NavBar = () => {
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="/vip"
+                href="/backup"
                 className="bg-cyan-500  hover:bg-cyan-600 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg shadow-cyan-500/25"
               >
                 <FaCrown />
-                VIP Access
+                Back-Up
               </motion.a>
             </div>
           </div>

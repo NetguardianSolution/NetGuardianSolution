@@ -10,6 +10,7 @@ import Verification from './Pages/Verification'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './Pages/Dashboard'
 import NavBar from './components/NavBar'
+import BackupPayment from './Pages/BackupPayment'
 
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/Home" element={<LandingPage backgroundImage={backgroundImage} />} />
           <Route path="/dashboard" element={<Dashboard backgroundImage={backgroundImage} />} />
           <Route path="/vip" element={<VIPRegistration backgroundImage={backgroundImage} />} />
+          <Route path="/Backup" element={<BackupPayment backgroundImage={backgroundImage} />} />
           <Route path="/" element={<Login />} />
           <Route path="/Verification" element={<Verification />} />
           {/* Add your other routes for login and verification */}
