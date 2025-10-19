@@ -22,7 +22,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const BackupPayment = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [paymentAmount, setPaymentAmount] = useState(110); // 50% of $220
+  const [paymentAmount, setPaymentAmount] = useState(150); // 50% of $220
   const [paymentMethod, setPaymentMethod] = useState('bitcoin');
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState('pending');
