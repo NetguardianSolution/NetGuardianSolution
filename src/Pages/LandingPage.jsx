@@ -196,8 +196,8 @@ const LandingPage = ({ backgroundImage }) => {
                 className="bg-gradient-to-r from-amber-500 to-cyan-500 hover:from-amber-600 hover:to-cyan-600 text-white px-12 py-5 rounded-2xl font-bold text-lg flex items-center gap-4 transition-all duration-300 group relative overflow-hidden"
               >
                 <div className="relative z-10 flex items-center gap-3">
-                  <FaCrown className="text-lg" />
-                  <span>Back Up - 220</span>
+                  {/* <FaCrown className="text-lg" /> */}
+                  <span>BackUp Now</span>
                   <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

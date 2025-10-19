@@ -11,7 +11,9 @@ import {
   FaQrcode,
   FaCopy,
   FaArrowRight,
-  FaSpinner
+  FaSpinner,
+  FaUpload,
+  FaCreativeCommonsRemix
 } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -374,6 +376,48 @@ const VIPRegistration = () => {
                   Access VIP Dashboard
                 </motion.button> */}
               </motion.div>
+
+              // <motion.div
+              // key="step3"
+              // initial={{ opacity: 0, scale: 0.9 }}
+              // animate={{ opacity: 1, scale: 1 }}
+              // className="text-center space-y-6"
+              // >
+              // <div className="w-20 h-20 bg-cyan-500 shadow-inner rounded-full flex items-center justify-center mx-auto mb-4">
+              //   <FaCreativeCommonsRemix className="text-2xl text-white" />
+              // </div>
+
+              // <h2 className="text-3xl font-bold text-white">VIP Membership is Being Processed!</h2>
+
+              // <p className="text-slate-300 text-lg">
+              //   Please Hold, we are confirming your payment.You will be contacted whe your payment is confirmed.
+              // </p>
+
+              // <div className="bg-white/5 rounded-xl p-6 border border-white/10 max-w-md mx-auto">
+              //   <div className="space-y-3 text-left">
+              //     <div className="flex justify-between">
+              //       <span className="text-slate-400">Payment Amount:</span>
+              //       <span className="text-white font-mono">${paymentAmount}</span>
+              //     </div>
+              //     {/* <div className="flex justify-between">
+              //       <span className="text-slate-400">Status:</span>
+              //       <span className="text-cyan-400">Completed</span>
+              //     </div> */}
+              //     <div className="flex justify-between">
+              //       <span className="text-slate-400">VIP Access:</span>
+              //       <span className="text-green-400">Processing...</span>
+              //     </div>
+              //   </div>
+              // </div>
+
+              // {/* <motion.button
+              //   whileHover={{ scale: 1.02 }}
+              //   whileTap={{ scale: 0.98 }}
+              //   className="bg-gradient-to-r from-amber-500 to-cyan-500 hover:from-amber-600 hover:to-cyan-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300"
+              // >
+              //   Access VIP Dashboard
+              // </motion.button> */}
+              // </motion.div>
             )}
           </AnimatePresence>
         </div>

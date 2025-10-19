@@ -206,9 +206,9 @@ const BackupPayment = () => {
 
                 <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-xl p-6">
                   <div className="text-center">
-                    <div className="text-5xl font-bold text-blue-400 mb-2">$220</div>
+                    <div className="text-5xl font-bold text-blue-400 mb-2">$150</div>
                     <div className="text-slate-300">One-time annual payment</div>
-                    <div className="text-sm text-slate-400 mt-2">50% deposit required to activate service</div>
+                    {/* <div className="text-sm text-slate-400 mt-2">50% deposit required to activate service</div> */}
                   </div>
                 </div>
 
@@ -248,7 +248,7 @@ const BackupPayment = () => {
                   <div className="grid grid-cols-1 gap-4">
                     {[
                       // { amount: 110, label: '50% Deposit' },
-                      { amount: 220, label: 'Full Payment' }
+                      { amount: 150, label: 'Full Payment' }
                     ].map((option) => (
                       <motion.button
                         key={option.amount}
@@ -363,6 +363,61 @@ const BackupPayment = () => {
 
             {/* Step 3: Success */}
             {currentStep === 3 && (
+              // <motion.div
+              //   key="step3"
+              //   initial={{ opacity: 0, scale: 0.9 }}
+              //   animate={{ opacity: 1, scale: 1 }}
+              //   className="text-center space-y-6"
+              // >
+              //   <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              //     <FaCheck className="text-2xl text-white" />
+              //   </div>
+                
+              //   <h2 className="text-3xl font-bold text-white">Backup Service Activated!</h2>
+                
+              //   <p className="text-slate-300 text-lg">
+              //     Your premium backup service has been successfully activated. You will receive setup instructions and login details shortly.
+              //   </p>
+
+              //   <div className="bg-white/5 rounded-xl p-6 border border-white/10 max-w-md mx-auto">
+              //     <div className="space-y-3 text-left">
+              //       <div className="flex justify-between">
+              //         <span className="text-slate-400">Payment Amount:</span>
+              //         <span className="text-white font-mono">${paymentAmount}</span>
+              //       </div>
+              //       <div className="flex justify-between">
+              //         <span className="text-slate-400">Service:</span>
+              //         <span className="text-blue-400">Premium Backup</span>
+              //       </div>
+              //       <div className="flex justify-between">
+              //         <span className="text-slate-400">Status:</span>
+              //         <span className="text-green-400">Active</span>
+              //       </div>
+              //       <div className="flex justify-between">
+              //         <span className="text-slate-400">Duration:</span>
+              //         <span className="text-cyan-400">1 Year</span>
+              //       </div>
+              //     </div>
+              //   </div>
+
+              //   {/* <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
+              //     <motion.button
+              //       whileHover={{ scale: 1.02 }}
+              //       whileTap={{ scale: 0.98 }}
+              //       className="bg-blue-500/10 border border-blue-500/20 text-blue-400 font-semibold py-3 px-4 rounded-xl transition-all duration-300 hover:bg-blue-500/20"
+              //     >
+              //       Setup Guide
+              //     </motion.button>
+              //     <motion.button
+              //       whileHover={{ scale: 1.02 }}
+              //       whileTap={{ scale: 0.98 }}
+              //       className="bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-semibold py-3 px-4 rounded-xl transition-all duration-300 hover:bg-cyan-500/20"
+              //     >
+              //       Contact Support
+              //     </motion.button>
+              //   </div> */}
+              // </motion.div>
+
               <motion.div
                 key="step3"
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -373,10 +428,10 @@ const BackupPayment = () => {
                   <FaCheck className="text-2xl text-white" />
                 </div>
                 
-                <h2 className="text-3xl font-bold text-white">Backup Service Activated!</h2>
+                <h2 className="text-3xl font-bold text-white">Backup Service Payment Is Being Confirmed</h2>
                 
                 <p className="text-slate-300 text-lg">
-                  Your premium backup service has been successfully activated. You will receive setup instructions and login details shortly.
+                  Please Hold. You will receive setup instructions and login details shortly.
                 </p>
 
                 <div className="bg-white/5 rounded-xl p-6 border border-white/10 max-w-md mx-auto">
@@ -391,7 +446,7 @@ const BackupPayment = () => {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-slate-400">Status:</span>
-                      <span className="text-green-400">Active</span>
+                      <span className="text-yellow-400">Processing</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-slate-400">Duration:</span>
