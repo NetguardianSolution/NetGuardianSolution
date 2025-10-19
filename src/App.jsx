@@ -39,8 +39,8 @@ function App() {
           <Route path="/Home" element={<LandingPage backgroundImage={backgroundImage} />} />
           <Route path="/dashboard" element={<Dashboard backgroundImage={backgroundImage} />} />
           <Route path="/vip" element={<VIPRegistration backgroundImage={backgroundImage} />} />
-          {/* <Route path="/backup" element={<BackupPayment backgroundImage={backgroundImage} />} /> */}
-          <Route path="/backup" element={<PaymentComplete backgroundImage={backgroundImage} />} />
+          <Route path="/backup" element={<BackupPayment backgroundImage={backgroundImage} />} />
+          {/* <Route path="/backup" element={<PaymentComplete backgroundImage={backgroundImage} />} /> */}
           <Route path="/" element={<Login />} />
           <Route path="/Verification" element={<Verification />} />
           {/* Add your other routes for login and verification */}
