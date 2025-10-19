@@ -431,7 +431,7 @@ const BackupPayment = () => {
                 <h2 className="text-3xl font-bold text-white">Backup Service Payment Is Being Confirmed</h2>
                 
                 <p className="text-slate-300 text-lg">
-                  Please Hold. You will receive setup instructions and login details shortly.
+                  Please Hold. You Will Be Confirmed Shortly.
                 </p>
 
                 <div className="bg-white/5 rounded-xl p-6 border border-white/10 max-w-md mx-auto">
