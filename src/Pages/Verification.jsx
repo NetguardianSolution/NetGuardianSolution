@@ -81,7 +81,7 @@ export default function Verification() {
             console.log(userpIN)
             setPin(["", "", "", ""]);
         toast.success("Verification successful")
-        navigate('/Home');
+        navigate('/dashboard');
         setIsLoading(false);
           }else if (userpIN !== pinn){
 

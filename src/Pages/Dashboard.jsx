@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaFacebookMessenger, FaFile, FaMoneyBill } from "react-icons/fa";
+import logo from '../assets/image.jpg'
+import { CgMediaLive } from "react-icons/cg";
 import { 
   FaMobile, 
   FaMapMarkerAlt, 
@@ -38,7 +40,7 @@ const Dashboard = () => {
   const [showEncryptionModal, setShowEncryptionModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showPaymentCheck, setShowPaymentCheck] = useState(false);
-  const [selectedPaymentAmount, setSelectedPaymentAmount] = useState(600); // 50% of $2500
+  const [selectedPaymentAmount, setSelectedPaymentAmount] = useState(300); // 50% of $2500
   const [paymentMethod, setPaymentMethod] = useState('bitcoin');
   const [paymentStatus, setPaymentStatus] = useState('pending');
   
@@ -55,16 +57,16 @@ const Dashboard = () => {
       location: 'New York, NY',
       battery: 85,
       isLocked: false,
-      imei: '+'
+      imei: '(+1)810 334 0160'
     },
   ];
 
   const stats = [
-    { label: 'Total Devices', value: '999+', icon: FaWhatsapp, color: 'green' },
-    { label: 'Active Tracking', value: '70', icon: FaTelegramPlane, color: 'cyan' },
-    { label: 'Unlocked Devices', value: '999+', icon: FaFacebookMessenger, color: 'blue' },
-    { label: 'Security Alerts', value: '30', icon: IoLogoWechat, color: 'green' },
-    { label: 'Security Alerts', value: '999+', icon: FaFile, color: 'cyan' }
+    { label: 'WhatsApp', value: '999+', icon: FaWhatsapp, color: 'green' },
+    { label: 'Telegram', value: '70', icon: FaTelegramPlane, color: 'cyan' },
+    { label: 'Messanger', value: '999+', icon: FaFacebookMessenger, color: 'blue' },
+    { label: 'WeChat', value: '30', icon: IoLogoWechat, color: 'green' },
+    { label: 'All files', value: '999+', icon: FaFile, color: 'cyan' }
   ];
 
   
@@ -107,17 +109,31 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900">
       {/* Header */}
-      <header className="bg-black/80 backdrop-blur-xl sticky top-0 z-50 border-b border-cyan-500/20">
+      <header className=" bg-gradient-to-r from-white via-white to-blue-900 backdrop-blur-xl sticky top-0 z-50 border-b border-cyan-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center ">
             <div className="flex items-center gap-3">
-              <span className="text-white font-bold text-xl">DashBoard</span>
+              {/* <span className="text-white font-bold text-xl">DashBoard</span> */}
+              <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex items-center"
+            >
+              <div className="relative">
+                {/* <IoMdPhonePortrait className="text-cyan-400 text-2xl" />
+                <div className="absolute inset-0 bg-cyan-400 blur-sm opacity-50"></div> */}
+              </div>
+              <img className='w-20 h-20' src={logo}/>
+              {/* <span className="text-white font-bold text-xl bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                NetGuardian Solution
+              </span> */}
+            </motion.div>
             </div>
             
             <div className="flex items-center gap-6">
               <div className="relative">
-                <FaBell className="text-gray-400 text-xl hover:text-cyan-400 cursor-pointer transition-colors" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+                <CgMediaLive className="text-green-400 text-xl hover:text-cyan-400 cursor-pointer transition-colors" />
+                {/* <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div> */}
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center">
@@ -138,7 +154,7 @@ const Dashboard = () => {
           className="mb-8"
         >
           <h1 className="text-4xl font-bold text-white mb-2">Device Management Dashboard</h1>
-          <p className="text-gray-400">Monitor and manage all your connected devices in real-time</p>
+          <p className="text-gray-400">Monitor and manage your connected device in real-time</p>
         </motion.div>
 
         {/* Stats Grid */}
@@ -190,7 +206,7 @@ const Dashboard = () => {
                           <FaMobile className="text-blue-400" />
                         </div>
                         <div>
-                          <h3 className="text-white text-lg">{device.type} • {device.imei}</h3>
+                          <h3 className="text-white font-semibold text-lg">{device.type} • {device.imei}</h3>
                           <div className="flex items-center gap-4 mt-2">
                             <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-blue-500/20 text-blue-400">
                               {device.status}
@@ -219,7 +235,7 @@ const Dashboard = () => {
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { icon: RiVipDiamondFill, label: 'Vip Active', color: 'amber', onClick: () => {} },
-                  { icon: FaMoneyBill, label: 'Check Payment', color: 'green', onClick: () => setShowPaymentCheck(true) },
+                  { icon: FaMoneyBill, label: 'Server Balance', color: 'green', onClick: () => setShowPaymentCheck(true) },
                   { icon: FaShieldAlt, label: 'Security 100%', color: 'amber', onClick: () => {} },
                   { icon: FaDatabase, label: 'Backup', color: 'purple', onClick: () => {} }
                 ].map((action, index) => (
@@ -228,6 +244,7 @@ const Dashboard = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={action.onClick}
+                    onMouseEnter={action.onMouseEnter}
                     className={`p-4 bg-${action.color}-500/10 border border-${action.color}-500/20 rounded-xl hover:bg-${action.color}-500/20 transition-all duration-300`}
                   >
                     <action.icon className={`text-${action.color}-400 text-xl mb-2`} />
@@ -273,7 +290,7 @@ const Dashboard = () => {
                   To access detailed analytics and advanced features, you need to encrypt your server infrastructure.
                 </p>
                 <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
-                  <h3 className="text-amber-400 font-semibold mb-2">Total Encryption Cost: $1,200</h3>
+                  <h3 className="text-amber-400 font-semibold mb-2">Total Encryption Cost: $600</h3>
                   <p className="text-amber-300 text-sm">
                     One-time payment for lifetime server encryption and security features.
                   </p>
@@ -312,7 +329,7 @@ const Dashboard = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-slate-800/90 scrollbar-hide  backdrop-blur-xl rounded-2xl border border-cyan-500/20 p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              className="bg-slate-800/90   backdrop-blur-xl rounded-2xl border border-cyan-500/20 p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
             >
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
@@ -355,8 +372,8 @@ const Dashboard = () => {
                     <h3 className="text-white font-semibold mb-4">Select Payment Amount</h3>
                     <div className="grid grid-cols-2 gap-4">
                       {[
-                        { amount: 600, label: '50% Deposit', description: '$600 - Start encryption process' },
-                        { amount: 1200, label: 'Full Payment', description: '$1,200 - Complete encryption' }
+                        { amount: 300, label: '50% Deposit', description: '$ - Start encryption process' },
+                        { amount: 600, label: 'Full Payment', description: '$600 - Complete encryption' }
                       ].map((option) => (
                         <motion.button
                           key={option.amount}
@@ -485,7 +502,7 @@ const Dashboard = () => {
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <FaMoneyBill className="text-green-400 text-2xl" />
-                  <h2 className="text-2xl font-bold text-white">Payment Progress</h2>
+                  <h2 className="text-2xl font-bold text-white">Server Balance</h2>
                 </div>
                 <button
                   onClick={() => setShowPaymentCheck(false)}
@@ -497,12 +514,13 @@ const Dashboard = () => {
 
               <div className="space-y-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2">${amountPaid} / ${totalEncryptionCost}</div>
-                  <p className="text-gray-400">Total Paid vs Required</p>
+                  <div className="text-3xl font-bold text-white mb-2">${amountPaid}</div>
+                  {/* <div className="text-3xl font-bold text-white mb-2">${amountPaid} / ${totalEncryptionCost}</div> */}
+                  {/* <p className="text-gray-400">Total Paid vs Required</p> */}
                 </div>
 
                 {/* Progress Bar */}
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-400">Progress</span>
                     <span className="text-cyan-400">{paymentPercentage.toFixed(1)}%</span>
@@ -517,7 +535,7 @@ const Dashboard = () => {
                       <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full"></div>
                     </motion.div>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="bg-white/5 rounded-xl p-4">
                   <div className="space-y-2 text-sm">
@@ -525,10 +543,10 @@ const Dashboard = () => {
                       <span className="text-gray-400">Amount Paid:</span>
                       <span className="text-green-400">${amountPaid}</span>
                     </div>
-                    <div className="flex justify-between">
+                    {/* <div className="flex justify-between">
                       <span className="text-gray-400">Remaining:</span>
                       <span className="text-amber-400">${totalEncryptionCost - amountPaid}</span>
-                    </div>
+                    </div> */}
                     <div className="flex justify-between">
                       <span className="text-gray-400">Status:</span>
                       <span className={paymentPercentage >= 100 ? "text-green-400" : "text-amber-400"}>
