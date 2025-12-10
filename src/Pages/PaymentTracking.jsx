@@ -16,12 +16,24 @@ import {
 } from 'react-icons/fa';
 import { IoMdPhonePortrait } from 'react-icons/io';
 import NavBar from '../components/NavBar';
+import { useNavigate } from 'react-router-dom';
 
 const PaymentTracking = () => {
   const [paymentStatus, setPaymentStatus] = useState('pending');
   const [selectedCrypto, setSelectedCrypto] = useState('bitcoin');
   const [timeLeft, setTimeLeft] = useState(1800); // 30 minutes
   const [copied, setCopied] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check authentication on component mount
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    
+    if (!isAuthenticated) {
+      // Redirect to login if not authenticated
+      navigate('/', { replace: true });
+    }
+  }, [navigate]);
 
   const cryptoWallets = {
     bitcoin: {

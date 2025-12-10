@@ -29,9 +29,22 @@ import {
 } from 'react-icons/fa';
 import { IoMdPhonePortrait, IoIosStats } from 'react-icons/io';
 import NavBar from '../components/NavBar';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = ({ backgroundImage }) => {
   const [activeTab, setActiveTab] = useState('features');
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check authentication on component mount
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    
+    if (!isAuthenticated) {
+      // Redirect to login if not authenticated
+      navigate('/', { replace: true });
+    }
+  }, [navigate]);
 
   const features = [
     {

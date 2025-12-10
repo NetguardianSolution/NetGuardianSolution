@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaFacebookMessenger, FaFile, FaMoneyBill } from "react-icons/fa";
 import logo from '../assets/image.jpg'
@@ -34,6 +34,8 @@ import {
 import { RiVipDiamondFill, RiVipDiamondLine } from "react-icons/ri";
 import { IoIosStats, IoMdPhonePortrait } from 'react-icons/io';
 import { IoLogoWechat } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
+import LogoutButton from '../components/LogoutButton';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -43,6 +45,18 @@ const Dashboard = () => {
   const [selectedPaymentAmount, setSelectedPaymentAmount] = useState(300); // 50% of $2500
   const [paymentMethod, setPaymentMethod] = useState('bitcoin');
   const [paymentStatus, setPaymentStatus] = useState('pending');
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check authentication on component mount
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    
+    if (!isAuthenticated) {
+      // Redirect to login if not authenticated
+      navigate('/', { replace: true });
+    }
+  }, [navigate]);
   
   // Configurable amount - you can change this value
   const totalEncryptionCost = 5000;
@@ -141,6 +155,7 @@ const Dashboard = () => {
                 </div>
                 <span className="text-white font-medium">Mattew Bower</span>
               </div>
+              <LogoutButton />
             </div>
           </div>
         </div>

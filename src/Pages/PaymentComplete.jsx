@@ -14,10 +14,23 @@ import {
   FaArrowLeft,
   FaCopy
 } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import { IoMdPhonePortrait } from 'react-icons/io';
 
 const PaymentComplete = ({ paymentData = {} }) => {
   // Default data in case no props are passed
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check authentication on component mount
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    
+    if (!isAuthenticated) {
+      // Redirect to login if not authenticated
+      navigate('/', { replace: true });
+    }
+  }, [navigate]);
   const defaultPaymentData = {
     amount: 150,
     service: 'Premium Backup Service',

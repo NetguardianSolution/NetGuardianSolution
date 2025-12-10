@@ -34,7 +34,7 @@ export default function Login() {
 
         const user = [userName, password]
         // setUser(email , password)
-        console.log(user)
+        // console.log(user)
         setUserName("")
         setPassword("")
         toast.success("LogIn successful")

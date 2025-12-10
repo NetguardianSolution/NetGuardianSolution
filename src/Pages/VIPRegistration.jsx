@@ -17,6 +17,7 @@ import {
 } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const VIPRegistration = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -25,6 +26,17 @@ const VIPRegistration = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState('pending');
   const [timeLeft, setTimeLeft] = useState(1800); // 30 minutes in seconds
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check authentication on component mount
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    
+    if (!isAuthenticated) {
+      // Redirect to login if not authenticated
+      navigate('/', { replace: true });
+    }
+  }, [navigate]);
 
   // Static crypto wallet addresses
   const cryptoWallets = {
