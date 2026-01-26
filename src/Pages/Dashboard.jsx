@@ -42,7 +42,7 @@ const Dashboard = () => {
   const [showEncryptionModal, setShowEncryptionModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showPaymentCheck, setShowPaymentCheck] = useState(false);
-  const [selectedPaymentAmount, setSelectedPaymentAmount] = useState(300); // 50% of $2500
+  const [selectedPaymentAmount, setSelectedPaymentAmount] = useState(340); // 50% of $2500
   const [paymentMethod, setPaymentMethod] = useState('bitcoin');
   const [paymentStatus, setPaymentStatus] = useState('pending');
 
@@ -305,7 +305,7 @@ const Dashboard = () => {
                   To access detailed analytics and advanced features, you need to encrypt your server infrastructure.
                 </p>
                 <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
-                  <h3 className="text-amber-400 font-semibold mb-2">Total Encryption Cost: $600</h3>
+                  <h3 className="text-amber-400 font-semibold mb-2">Total Encryption Cost: $680</h3>
                   <p className="text-amber-300 text-sm">
                     One-time payment for lifetime server encryption and security features.
                   </p>
@@ -387,8 +387,8 @@ const Dashboard = () => {
                     <h3 className="text-white font-semibold mb-4">Select Payment Amount</h3>
                     <div className="grid grid-cols-2 gap-4">
                       {[
-                        { amount: 300, label: '50% Deposit', description: '$ - Start encryption process' },
-                        { amount: 600, label: 'Full Payment', description: '$600 - Complete encryption' }
+                        { amount: 340, label: '50% Deposit', description: '$ - Start encryption process' },
+                        { amount: 680, label: 'Full Payment', description: '$600 - Complete encryption' }
                       ].map((option) => (
                         <motion.button
                           key={option.amount}
