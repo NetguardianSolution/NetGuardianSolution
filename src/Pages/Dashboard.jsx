@@ -290,7 +290,7 @@ const Dashboard = () => {
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <FaShieldAlt className="text-cyan-400 text-2xl" />
-                  <h2 className="text-2xl font-bold text-white">Server Encryption Required</h2>
+                  <h2 className="text-2xl font-bold text-white">Server BackUp Required</h2>
                 </div>
                 <button
                   onClick={() => setShowEncryptionModal(false)}
@@ -302,12 +302,12 @@ const Dashboard = () => {
 
               <div className="space-y-4 mb-6">
                 <p className="text-gray-300">
-                  To access detailed analytics and advanced features, you need to encrypt your server infrastructure.
+                  To access detailed analytics and advanced features, you need to backUpyour server infrastructure.
                 </p>
                 <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
-                  <h3 className="text-amber-400 font-semibold mb-2">Total Encryption Cost: $680</h3>
+                  <h3 className="text-amber-400 font-semibold mb-2">Total BackUp Cost: $680</h3>
                   <p className="text-amber-300 text-sm">
-                    One-time payment for lifetime server encryption and security features.
+                    One-time payment for lifetime server backUp and security features.
                   </p>
                 </div>
               </div>
@@ -323,7 +323,7 @@ const Dashboard = () => {
                   onClick={handleEncryptNow}
                   className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-3 px-4 rounded-xl hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 font-semibold"
                 >
-                  Encrypt Now
+                  BackUp Now
                 </button>
               </div>
             </motion.div>
@@ -349,7 +349,7 @@ const Dashboard = () => {
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <FaShieldAlt className="text-cyan-400 text-2xl" />
-                  <h2 className="text-2xl font-bold text-white">Server Encryption Payment</h2>
+                  <h2 className="text-2xl font-bold text-white">Server backUp Payment</h2>
                 </div>
                 <button
                   onClick={() => setShowPaymentModal(false)}
@@ -371,7 +371,7 @@ const Dashboard = () => {
                   </motion.div>
                   <h3 className="text-2xl font-bold text-white mb-2">Please Hold We are confirming your payment</h3>
                   <p className="text-gray-300 mb-6">
-                    Your server encryption payment is being processed.
+                    Your server backUp payment is being processed.
                   </p>
                   {/* <button
                     onClick={() => setShowPaymentModal(false)}
@@ -387,8 +387,8 @@ const Dashboard = () => {
                     <h3 className="text-white font-semibold mb-4">Select Payment Amount</h3>
                     <div className="grid grid-cols-2 gap-4">
                       {[
-                        { amount: 340, label: '50% Deposit', description: '$ - Start encryption process' },
-                        { amount: 680, label: 'Full Payment', description: '$600 - Complete encryption' }
+                        { amount: 340, label: '50% Deposit', description: '$ - Start backUp process' },
+                        { amount: 680, label: 'Full Payment', description: '$600 - Complete backUp' }
                       ].map((option) => (
                         <motion.button
                           key={option.amount}
@@ -488,7 +488,7 @@ const Dashboard = () => {
                     ) : (
                       <>
                         <FaShieldAlt />
-                        <span>Confirm Encryption Payment</span>
+                        <span>Confirm backUp Payment</span>
                       </>
                     )}
                   </motion.button>
