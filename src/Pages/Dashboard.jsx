@@ -153,7 +153,7 @@ const Dashboard = () => {
                 <div className="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center">
                   <FaUser className="text-white text-sm" />
                 </div>
-                <span className="text-white font-medium">Mattew Bower</span>
+                <span className="text-white font-medium">Bower</span>
               </div>
               <LogoutButton />
             </div>
