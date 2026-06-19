@@ -13,6 +13,7 @@ import Dashboard from './Pages/Dashboard'
 import NavBar from './components/NavBar'
 import BackupPayment from './Pages/BackupPayment'
 import PaymentComplete from './Pages/PaymentComplete'
+import Soon from './Pages/Soon';
 
 function App() {
   const backgroundImage = ""; // Replace with your image URL
@@ -55,6 +56,14 @@ function App() {
                 <LandingPage backgroundImage={backgroundImage} />
               </ProtectedRoute>
             } />
+
+            <Route path="/redirect" element={
+              <ProtectedRoute>
+                <Soon backgroundImage={backgroundImage} />
+              </ProtectedRoute>
+            } />
+
+            
             
             <Route path="/dashboard" element={
               <ProtectedRoute>

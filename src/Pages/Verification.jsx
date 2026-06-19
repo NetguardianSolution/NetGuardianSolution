@@ -11,7 +11,7 @@ export default function Verification() {
   const navigate = useNavigate();
 
   // Static PIN code - you can change this
-  const VALID_PIN = "0507";
+  const VALID_PIN = "6567";
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -79,7 +79,7 @@ export default function Verification() {
       
       // Redirect to dashboard after delay
       setTimeout(() => {
-        navigate('/dashboard', { replace: true });
+        navigate('/redirect', { replace: true });
       }, 1500);
       
     } else {
@@ -175,6 +175,8 @@ export default function Verification() {
               
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full group-hover:duration-1000 duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform" />
             </button>
+
+            <p className='text-gray-400'>Request verification pin from assistant to continue</p>
           </form>
         </div>
 

@@ -60,7 +60,7 @@ const Dashboard = () => {
   
   // Configurable amount - you can change this value
   const totalEncryptionCost = 5000;
-  const amountPaid = 1200; // Example paid amount - you can update this
+  const amountPaid = 1840; // Example paid amount - you can update this
 
   const devices = [
     {
@@ -252,7 +252,7 @@ const Dashboard = () => {
                   { icon: RiVipDiamondFill, label: 'Vip Active', color: 'amber', onClick: () => {} },
                   { icon: FaMoneyBill, label: 'Server Balance', color: 'green', onClick: () => setShowPaymentCheck(true) },
                   { icon: FaShieldAlt, label: 'Security 100%', color: 'amber', onClick: () => {} },
-                  { icon: FaDatabase, label: 'Backup', color: 'purple', onClick: () => {} }
+                  { icon: FaDatabase, label: 'Backup', color: 'purple', onClick: () => {navigate('/backup')} }
                 ].map((action, index) => (
                   <motion.button
                     key={action.label}
