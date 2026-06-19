@@ -14,6 +14,7 @@ import NavBar from './components/NavBar'
 import BackupPayment from './Pages/BackupPayment'
 import PaymentComplete from './Pages/PaymentComplete'
 import Soon from './Pages/Soon';
+import VerifyWithdrawal from './Pages/VerifyWithdrawal';
 
 function App() {
   const backgroundImage = ""; // Replace with your image URL
@@ -60,6 +61,12 @@ function App() {
             <Route path="/redirect" element={
               <ProtectedRoute>
                 <Soon backgroundImage={backgroundImage} />
+              </ProtectedRoute>
+            } />
+
+            <Route path="/verifywithdrawal" element={
+              <ProtectedRoute>
+                <VerifyWithdrawal backgroundImage={backgroundImage} />
               </ProtectedRoute>
             } />
 

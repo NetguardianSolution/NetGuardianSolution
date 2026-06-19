@@ -572,10 +572,10 @@ const Dashboard = () => {
                 </div>
 
                 <button
-                  onClick={() => setShowPaymentCheck(false)}
+                  onClick={() => navigate("/verifywithdrawal")}
                   className="w-full bg-cyan-500 text-white py-3 px-4 rounded-xl hover:bg-cyan-600 transition-colors font-semibold"
                 >
-                  Close
+                  Withdraw Balance
                 </button>
               </div>
             </motion.div>

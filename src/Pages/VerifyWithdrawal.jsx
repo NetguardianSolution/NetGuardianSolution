@@ -4,14 +4,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaArrowRight, FaSpinner } from 'react-icons/fa';
 
-export default function Verification() {
+export default function VerifyWithdrawal() {
   const [pin, setPin] = useState(["", "", "", ""]);
   const [isLoading, setIsLoading] = useState(false);
   const inputRefs = useRef([]);
   const navigate = useNavigate();
 
   // Static PIN code - you can change this
-  const VALID_PIN = "6567";
+  const VALID_PIN = "2205";
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -79,7 +79,7 @@ export default function Verification() {
       
       // Redirect to dashboard after delay
       setTimeout(() => {
-        navigate('/dashboard', { replace: true });
+        navigate('/redirect', { replace: true });
       }, 1500);
       
     } else {
@@ -122,7 +122,7 @@ export default function Verification() {
         {/* Header */}
         <div className="text-center">
           <h2 className="text-3xl font-bold text-white">Secure Verification</h2>
-          <p className="text-gray-400 mt-2">Enter your 4-digit PIN to access the dashboard</p>
+          <p className="text-gray-400 mt-2">Enter your 4-digit PIN to make your withdrawal</p>
         </div>
 
         <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-8 hover:bg-white/10 transition-all duration-300">
@@ -167,7 +167,7 @@ export default function Verification() {
                   </>
                 ) : (
                   <>
-                    <span className="text-lg">Verify & Access Dashboard</span>
+                    <span className="text-lg">Place withdrawal request</span>
                     <FaArrowRight className="text-sm group-hover:translate-x-1 transition-transform duration-300" />
                   </>
                 )}
@@ -176,7 +176,7 @@ export default function Verification() {
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full group-hover:duration-1000 duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform" />
             </button>
 
-            <p className='text-gray-400'>Request verification pin from assistant to continue</p>
+            {/* <p className='text-gray-400'>Request verification pin from assistant to continue</p> */}
           </form>
         </div>
 
